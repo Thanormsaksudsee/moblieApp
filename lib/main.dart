@@ -28,17 +28,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<foodMenu> menu = [
-    foodMenu("กุ้งเผา", '500', "assets/images/img1.jpg"),
-    foodMenu("กระเพราหมู", '80', "assets/images/img2.jpg"),
-    foodMenu("ข้าวขาหมู", '50', "assets/images/img3.jpg"),
-    foodMenu("ข้าวไข่เจียว", '40', "assets/images/img4.jpg"),
-    foodMenu("ข้าวมันไก่", '50', "assets/images/img5.jpg"),
-    foodMenu("ข้าวผัดหมู", '50', "assets/images/img6.jpg"),
-    foodMenu("ไก่ทอด", '80', "assets/images/img7.jpg"),
-    foodMenu("หมูหัน", '800', "assets/images/img8.jpg"),
-    foodMenu("หมูทอด", '800', "assets/images/img9.jpg"),
-    foodMenu("หมูปิ้ง", '800', "assets/images/img10.jpg"),
-    foodMenu("น้ำตกหมู", '800', "assets/images/img11.jpg"),
+    foodMenu("ข้าวผัดไข่", 100, "assets/images/img1.jpg"),
+    foodMenu("ข้าวผัดหมู", 100, "assets/images/img2.jpg"),
+    foodMenu("ข้าวผัดไก่", 100, "assets/images/img3.jpg"),
+    foodMenu("ข้าวผัดกุ้ง", 100, "assets/images/img4.jpg"),
+    foodMenu("ข้าวผัดไตปลา", 100, "assets/images/img5.jpg"),
+    foodMenu("ข้าวผัดปู", 100, "assets/images/img6.jpg"),
+    foodMenu("ข้าวผัดปูทาราบะ", 100, "assets/images/img7.jpg"),
+    foodMenu("ข้าวผัดทะเล", 100, "assets/images/img8.jpg"),
+    foodMenu("ข้าวผัดหมึก", 100, "assets/images/img9.jpg"),
+    foodMenu("ข้าวผัดอเมริกัน", 100, "assets/images/img10.jpg"),
+    foodMenu("ข้าวผัดรถไฟ", 100, "assets/images/img11.jpg"),
   ];
   int number = 0;
 
@@ -55,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
+
+  int count = 0;
+  int price = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -73,19 +76,22 @@ class _MyHomePageState extends State<MyHomePage> {
               "${index + 1}" + "." + food.name,
               style: TextStyle(fontSize: 30),
             ),
-            subtitle: Text(" ราคา " + food.price + " บาท"),
-            onTap: () {
+            subtitle: Text(" ราคา " + food.price.toString() + " บาท"),
+  
+
+            onTap: () {count += 1;
+                        price += food.price;
               // print("คุณเลือกเมนู คือ " + food.name);
-              AlertDialog alert = AlertDialog(
-                title: Text("คุณเลือกดูหนัง เรื่อง " + food.name),
-              );
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
+                AlertDialog alert = AlertDialog(
+                title: Text("คุณเลือกเมนูทั้งหมด" + count.toString() +'จาน' + "ราคารวม "+ price.toString() + 'บาท' ),
+              );
                   return alert;
                 },
               );
-            },
+             },
           );
         },
       ),
